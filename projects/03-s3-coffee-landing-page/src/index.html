@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cloud Sprint â€” Random Site</title>
+    <meta name="description" content="A tiny site to practice S3 + CloudFront + Route 53." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="wrap">
+      <nav class="nav">
+        <div class="brand">Cloud Sprint</div>
+        <div class="links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <h1>Ship small. Learn fast.</h1>
+        <p>
+          This is a lightweight site you can deploy on <strong>S3</strong> and accelerate with
+          <strong>CloudFront</strong>.
+        </p>
+
+        <div class="cta">
+          <button id="quoteBtn" class="btn">Give me a quote</button>
+          <a class="btn ghost" href="#deploy">How to deploy</a>
+        </div>
+
+        <div class="card" aria-live="polite">
+          <div class="card-label">Todayâ€™s quote</div>
+          <div id="quoteText" class="quote">Click â€œGive me a quoteâ€.</div>
+          <div id="quoteMeta" class="meta"></div>
+        </div>
+      </section>
+    </header>
+
+    <main class="wrap">
+      <section id="features" class="grid">
+        <div class="tile">
+          <h2>Exam-friendly</h2>
+          <p>Reinforces S3 (object storage), CloudFront (CDN), and optional Route 53 (DNS).</p>
+        </div>
+        <div class="tile">
+          <h2>Real-ish</h2>
+          <p>Has interaction (JS) so you practice uploading multiple assets and caching behavior.</p>
+        </div>
+        <div class="tile">
+          <h2>Fast</h2>
+          <p>One folder. Three files. Deploy in minutes.</p>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <h2>What youâ€™re practicing</h2>
+        <ul>
+          <li><strong>S3</strong> hosts your site files (HTML/CSS/JS) as objects.</li>
+          <li><strong>CloudFront</strong> caches them at edge locations for low latency.</li>
+          <li><strong>Route 53</strong> (optional) points a domain to your CloudFront distribution.</li>
+        </ul>
+      </section>
+
+      <section id="deploy" class="deploy">
+        <h2>Deployment checklist</h2>
+        <ol>
+          <li>Create an S3 bucket (unique name), disable â€œBlock all public accessâ€.</li>
+          <li>Upload these files.</li>
+          <li>Enable Static Website Hosting (index document: <code>index.html</code>).</li>
+          <li>Add bucket policy for public read (<code>s3:GetObject</code>).</li>
+          <li>Create a CloudFront distribution with your S3 website endpoint as the origin.</li>
+        </ol>
+        <p class="tiny">
+          Pro move: after CloudFront is live, test caching by updating text and doing a hard refresh.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap foot">
+        <span>Built for AWS practice.</span>
+        <span class="dot">â€¢</span>
+        <span id="buildStamp"></span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
