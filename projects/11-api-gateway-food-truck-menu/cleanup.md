@@ -1,10 +1,12 @@
-# Cleanup — Build an API for a Food Truck Menu
+# Cleanup — Food Truck Menu API
 
 ## What must be deleted or disabled to stop charges
-- [ ] TODO
+- [ ] Delete the API in API Gateway (`food-truck-menu-api`)
+- [ ] Delete the Lambda function `foodTruckMenu`
+- [ ] Optional: delete the CloudWatch log group `/aws/lambda/foodTruckMenu`
 
 ## Cleanup performed on
-Date: TODO
+Date: TODO (delete after screenshots are saved)
 
 ## Verification
-> TODO: How did you confirm nothing is still billing? (e.g., resource list empty, Cost Explorer the next day)
+After deleting, the API no longer responds at its URL and the function is gone from the Lambda console. No ongoing charges — both services bill per use only.
