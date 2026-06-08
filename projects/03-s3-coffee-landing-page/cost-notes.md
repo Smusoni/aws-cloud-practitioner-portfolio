@@ -1,10 +1,11 @@
-# Cost Notes — Host a Coffee Brand Landing Page on S3
+# Cost Notes — Colon Coffee Landing Page
 
-## Expected Cost
-> TODO: What would this cost per month at small scale?
+## What This Costs You
+Effectively $0. Storing one HTML page costs a fraction of a cent per month, and page visits are billed per request at tiny amounts. A brand landing page stays well inside the free tier.
 
-## Free Tier Assumptions
-> TODO: Which parts are Free Tier eligible and what are the limits?
+## Free Tier
+S3 includes 5 GB of storage and a generous number of requests per month free for the first year. One web page uses a microscopic fraction of that.
 
 ## Cost Controls
-> TODO: Budgets, alerts, teardown timing, sizing choices.
+- Only the website files are public — nothing else in the account is exposed.
+- No server runs in the background, so there's no hourly charge.
