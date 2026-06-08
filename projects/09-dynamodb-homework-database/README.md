@@ -1,7 +1,8 @@
 # Create a Homework Tracker Database with DynamoDB
 
 ## Business Scenario
-A parent wants a simple way to track their kid's homework - subject, assignment,due date and wether its done. THey dont have a tech team, the data is simple and should be cheap and reliable. Dynamodb fits its serverless (no maintenance), scales automatically, and costs almosts nothing this size.
+Hi Terence — here's the homework tracker database you asked for.
+You wanted a simple way to keep track of homework — the subject, the assignment, when it's due, and whether it's done. It needs to be cheap, reliable, and not something that requires a tech team to maintain.
 
 ## AWS Services Used
 - Amazon DynamoDB: A serverless NoSQL database. You create a table and store records ("items") without managing any server.
