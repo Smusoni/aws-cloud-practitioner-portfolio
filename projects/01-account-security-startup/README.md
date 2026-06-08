@@ -1,8 +1,8 @@
 # Secure a New AWS Account for a Startup
 
 ## Business Scenario
-A startup hires you to lock down its Aws accounts before engineers start building. They need protected master credentials, a safe everyday login, and simple checklist proving the account is secure.
-
+Hi Terence — here's the account security work you asked for, plus a gap I found and fixed.
+You wanted your AWS account locked down before any real building starts — the master credentials protected, a safe everyday login, and proof that the account is secure.
 
 ## AWS Services Used
 - Root user: Master account, Has unlimited power, so it should be protected and rarelt used
