@@ -1,10 +1,10 @@
 # Cost Notes — Set Up Billing Alerts for a Small Business
 
 ## Expected Cost
-> TODO: What would this cost per month at small scale?
+> Cost is $0. AWS gives you your first two budgets free, and cost explorer and the billing dashboard are free to use.
 
 ## Free Tier Assumptions
-> TODO: Which parts are Free Tier eligible and what are the limits?
+> None needed - bulling tools dont use up any Free tier limits 
 
 ## Cost Controls
-> TODO: Budgets, alerts, teardown timing, sizing choices.
+this project is cost control
