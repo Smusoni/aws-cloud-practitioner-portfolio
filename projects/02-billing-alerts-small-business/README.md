@@ -3,11 +3,11 @@
 ## Business Scenario
 Who asked for this and what problem are we solving?
 
-> TODO: Write 2-4 sentences a non-technical business owner could understand.
-
+> TODO: business owner wants to use aws but is afriad of a surprsised bill. I am setting billing alerts so that the owners can get notification on when a services exceeds its billing limit.
 ## AWS Services Used
-- Service 1: plain-English purpose
-- Service 2: plain-English purpose
+- Service 1: Budgets: lets you set mmonthly spending limits and get an email when the limit has been exceed
+- Service 2: Billing Dashboard: home page is for everything cost related
+- Service 3: Cost Explorer: a tool that shows which services are being charged 
 
 ## Architecture
 ```mermaid
@@ -17,23 +17,20 @@ flowchart LR
 ```
 
 ## What I Built
-> TODO: Describe the final product.
+> A monthly cost budget with an email alert, threshold, sized to protect the remaining account credit 
 
 ## Evidence
 See the `screenshots/` folder.
-
-| Screenshot | What it proves |
-|---|---|
-| screenshots/example.png | TODO |
+screenshots/aws-budget.png
 
 ## Security Notes
-> TODO: Access, IAM, encryption, public/private choices, least privilege.
+>Billing data is sensitive - only the account owner.
 
 ## Cost Notes
-See [cost-notes.md](cost-notes.md).
+See [cost-notes.md](cost-notes.md). aws budgets itself is free for the first two budgets two budgets per account.
 
 ## Cleanup
-See [cleanup.md](cleanup.md).
+No cleanup needed
 
 ## Exam Mapping
 See [exam-mapping.md](exam-mapping.md).
