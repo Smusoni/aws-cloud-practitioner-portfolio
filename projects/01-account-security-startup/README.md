@@ -1,13 +1,13 @@
 # Secure a New AWS Account for a Startup
 
 ## Business Scenario
-Who asked for this and what problem are we solving?
+A startup hires you to lock down its Aws accounts before engineers start building. They need protected master credentials, a safe everyday login, and simple checklist proving the account is secure.
 
-> TODO: Write 2-4 sentences a non-technical business owner could understand.
 
 ## AWS Services Used
-- Service 1: plain-English purpose
-- Service 2: plain-English purpose
+- Root user: Master account, Has unlimited power, so it should be protected and rarelt used
+- IAM (Identity and Access MAnagement): Lets you create separate login ("users") with only permissions they need.
+- MFA (Multi-Factor AUthentucation): A second loging step.
 
 ## Architecture
 ```mermaid
@@ -17,23 +17,23 @@ flowchart LR
 ```
 
 ## What I Built
-> TODO: Describe the final product.
+> Created a new IAM user for everyday work.
 
 ## Evidence
-See the `screenshots/` folder.
+screnschots 
 
 | Screenshot | What it proves |
-|---|---|
-| screenshots/example.png | TODO |
+| screenshots/root-mfa-enabled.png | MFA is active on the root account|
+| screenshots/admin-user.png| A dedicated admin IAM user exisits with console access + MFA enabled
 
 ## Security Notes
-> TODO: Access, IAM, encryption, public/private choices, least privilege.
+> TODO:
 
 ## Cost Notes
-See [cost-notes.md](cost-notes.md).
+See [cost-notes.md](cost-notes.md). 
 
 ## Cleanup
-See [cleanup.md](cleanup.md).
+See [cleanup.md](cleanup.md). No paid resources created.
 
 ## Exam Mapping
 See [exam-mapping.md](exam-mapping.md).
