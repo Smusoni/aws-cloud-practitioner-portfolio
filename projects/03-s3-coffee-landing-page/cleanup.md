@@ -1,10 +1,11 @@
-# Cleanup — Host a Coffee Brand Landing Page on S3
+# Cleanup — Colon Coffee Landing Page
 
-## What must be deleted or disabled to stop charges
-- [ ] TODO
+## Keep it live
+This site has no running cost, so it stays online as long as you want it available. No action needed to avoid charges.
 
-## Cleanup performed on
-Date: TODO
+## To take it down later (only if you no longer want the site)
+- [ ] Empty the S3 bucket (delete the files inside)
+- [ ] Delete the bucket `colon-coffee-terence-2026`
 
 ## Verification
-> TODO: How did you confirm nothing is still billing? (e.g., resource list empty, Cost Explorer the next day)
+After deleting, the website link no longer loads and the bucket is gone from the S3 console. No charges either way — S3 hosting for one page is effectively free.
