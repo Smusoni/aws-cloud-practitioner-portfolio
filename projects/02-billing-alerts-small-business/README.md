@@ -3,7 +3,11 @@
 ## Business Scenario
 Who asked for this and what problem are we solving?
 
-> TODO: business owner wants to use aws but is afriad of a surprsised bill. I am setting billing alerts so that the owners can get notification on when a services exceeds its billing limit.
+> Hi Terence — here's the billing protection you asked for.
+
+What You Asked For
+You wanted to start using AWS without the risk of a surprise bill. Before any cloud project goes live, you need spending to be visible and capped by an alert — so you find out about a charge in real time, not at the end of the month.
+
 ## AWS Services Used
 - Service 1: Budgets: lets you set mmonthly spending limits and get an email when the limit has been exceed
 - Service 2: Billing Dashboard: home page is for everything cost related
