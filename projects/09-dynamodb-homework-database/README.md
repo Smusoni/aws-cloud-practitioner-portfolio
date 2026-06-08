@@ -1,33 +1,44 @@
-# Create a Homework Tracker Database with DynamoDB
+# Build a Homework Tracker Database
 
-## Business Scenario
 Hi Terence — here's the homework tracker database you asked for.
+
+## What You Asked For
 You wanted a simple way to keep track of homework — the subject, the assignment, when it's due, and whether it's done. It needs to be cheap, reliable, and not something that requires a tech team to maintain.
 
-## AWS Services Used
-- Amazon DynamoDB: A serverless NoSQL database. You create a table and store records ("items") without managing any server.
-## NOSQL in Plain ENglish
-A NoSQL database doesnt force every record into the same rigid columns like a spreadsheet. Each item can have its own attribures. DynamoDB is built for fast looksups by a unique key and scales automatically, which is why its popular for apps that need speed and simplicity.
+## What I Built For You
+I created a database called `HomeworkTracker` using Amazon DynamoDB, and added sample assignments to prove it stores and retrieves real data. You (or an app built on top of it later) can add an assignment and pull it back instantly by its ID.
 
-## What I Built
-> A DynamoDB table called 'HomeworkTracker' with a partition key of 'AssignmentID'. I added several homework items to prove it stores and reutens real data.
+| Assignment ID | Subject | Assignment | Due Date | Status |
+|---|---|---|---|---|
+| HW-001 | Math | Chapter 5 problems | 2026-06-12 | Not started |
+| HW-002 | Science | Chapter 6  | 2026-06-14 | Not started |
+| HW-003 | History | Chapter 7  | 2026-06-16 | Not started |
 
-## Evidence
-See the `screenshots/` folder.
+## Why DynamoDB Is The Right Fit For You
+- **No servers to manage** — AWS runs it for you, so there's nothing to maintain or fix.
+- **Cheap at this size** — a tracker like this falls inside the free usage tier.
+- **Grows with you** — if this ever became a real app with thousands of users, it scales automatically without changes.
 
-| Screenshot | What it proves |
+It's the right tool because your data is simple and you want speed and zero maintenance — not a complex database built for heavy relationships.
 
-| screenshots/sample-items.png| Real homework items stored in the table|
-| screenshots/dynamodb-table.png | Table created and active |
+## How It Works
+```mermaid
+flowchart LR
+  You[You / Future App] --> DDB[(DynamoDB: HomeworkTracker)]
+  DDB --> Item[Assignments stored by ID]
+```
 
-## Security Notes
->  Access is controlled through IAM - only my admin user can read/write the table. No public access.
+## Proof It Works
+| Screenshot | What it shows you |
+|---|---|
+| screenshots/dynamodb-table.png | Your table, created and active |
+| screenshots/sample-items.png | Real homework assignments stored inside it |
 
-## Cost Notes
-See [cost-notes.md](cost-notes.md). On-demand mode + tiny data = effectively free/ Free Tier
+## What This Costs You
+Effectively nothing — it sits inside the free tier. See [cost-notes.md](cost-notes.md).
 
-## Cleanup
-See [cleanup.md](cleanup.md).
+## Maintenance / Cleanup
+See [cleanup.md](cleanup.md) for how to shut it down if you no longer need it.
 
-## Exam Mapping
-See [exam-mapping.md](exam-mapping.md).
+## Concepts Demonstrated
+See [concepts-demonstrated.md](concepts-demonstrated.md).
