@@ -1,10 +1,11 @@
-# Cleanup — Launch a Cloud Server for a Freelance Developer
+# Cleanup — Cloud Server (EC2)
 
-## What must be deleted or disabled to stop charges
-- [ ] TODO
+## What was done
+- [x] Instance `terence-devbox` terminated after screenshots were saved
+- [x] Confirmed "Terminated" in the EC2 Instances list
 
 ## Cleanup performed on
-Date: TODO
+Date: (today)
 
 ## Verification
-> TODO: How did you confirm nothing is still billing? (e.g., resource list empty, Cost Explorer the next day)
+The instance shows "Terminated" and drops off the Instances list. No further charges. Confirm in Cost Explorer the next day that EC2 charges are zero.
