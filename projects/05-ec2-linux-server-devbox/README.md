@@ -1,39 +1,44 @@
-# Launch a Cloud Server for a Freelance Developer
+# A Cloud Server You Can Experiment On
 
-## Business Scenario
-Who asked for this and what problem are we solving?
+Hi Terence — here's the test server you asked for, built and verified.
 
-> TODO: Write 2-4 sentences a non-technical business owner could understand.
+## What You Asked For
+You wanted your own Linux server to experiment on — somewhere to test things and learn — without buying a physical machine or risking your main setup.
 
-## AWS Services Used
-- Service 1: plain-English purpose
-- Service 2: plain-English purpose
+## What I Built For You
+I launched a Linux server on AWS EC2 (`terence-devbox`), connected to it, and ran commands to confirm it works as a real, full computer in AWS's data center. Because EC2 charges by the hour while running, I terminated it after verifying it — so it isn't sitting in the background costing money. When you need one again, it takes minutes to launch a fresh one.
 
-## Architecture
+## The AWS Services I Used (plain English)
+- **EC2 (Elastic Compute Cloud)**: renting a computer in AWS's data center. You pick the size, operating system, and how you log in.
+- **AMI (Amazon Machine Image)**: the operating system template the server starts from (Amazon Linux).
+- **Security group**: the firewall around the server, controlling who can connect.
+- **Key pair**: the secure credential for logging in.
+- **EC2 Instance Connect**: a way to connect to the server securely through the browser.
+
+## Why This Setup Makes Sense For You
+A physical test machine costs hundreds and sits idle most of the time. A cloud server you spin up only when needed and turn off when done — paying just for the hours used. It's a safe sandbox: break it, wipe it, relaunch in minutes, with nothing important at risk.
+
+## How It Works
 ```mermaid
 flowchart LR
-  User[User or Client] --> A[Service]
-  A --> B[Service]
+  You[You] -->|secure connection| SG[Security Group / Firewall]
+  SG --> EC2[EC2 Linux Server: terence-devbox]
 ```
 
-## What I Built
-> TODO: Describe the final product.
-
-## Evidence
-See the `screenshots/` folder.
-
-| Screenshot | What it proves |
+## Proof It Works
+| Screenshot | What it shows you |
 |---|---|
-| screenshots/example.png | TODO |
+| screenshots/ec2-running.png | The server running with healthy status checks |
+| screenshots/terminal-connected.png | A live connection into the server, running real commands |
 
 ## Security Notes
-> TODO: Access, IAM, encryption, public/private choices, least privilege.
+Best practice is to restrict server access (SSH/port 22) to a single trusted IP. For this demo I briefly opened access to connect, then terminated the server — so it wasn't left exposed. In a long-running setup, I'd keep access locked to a trusted IP only.
 
-## Cost Notes
-See [cost-notes.md](cost-notes.md).
+## What This Costs You
+A t2/t3.micro is free-tier eligible, but EC2 bills hourly while running. I terminated it, so it costs nothing now. See [cost-notes.md](cost-notes.md).
 
-## Cleanup
-See [cleanup.md](cleanup.md).
+## Maintenance / Cleanup
+See [cleanup.md](cleanup.md) — the server was terminated after verification.
 
-## Exam Mapping
-See [exam-mapping.md](exam-mapping.md).
+## Concepts Demonstrated
+See [concepts-demonstrated.md](concepts-demonstrated.md).
