@@ -1,10 +1,11 @@
-# Cost Notes — Build a Cloud Network for a Delivery App
+# Cost Notes — Cloud Network (VPC)
 
-## Expected Cost
-> TODO: What would this cost per month at small scale?
+## What This Costs You
+$0. The core networking building blocks — VPC, subnets, route tables, and internet gateway — are all free to create and run.
 
-## Free Tier Assumptions
-> TODO: Which parts are Free Tier eligible and what are the limits?
+## The One Thing That Would Cost Money
+A NAT gateway (which lets private subnets reach the internet outbound) bills hourly. I intentionally did not create one, so there is no running cost here.
 
 ## Cost Controls
-> TODO: Budgets, alerts, teardown timing, sizing choices.
+- No NAT gateway used.
+- No paid resources running inside the network yet.
