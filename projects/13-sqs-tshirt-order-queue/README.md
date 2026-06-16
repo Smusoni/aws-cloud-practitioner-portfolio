@@ -1,39 +1,22 @@
-# Create an Order Processing Queue with SQS
+# Order Processing Queue with SQS
 
-## Business Scenario
-Who asked for this and what problem are we solving?
+Hi Terence — here's the order queue I built for the T-shirt shop scenario.
 
-> TODO: Write 2-4 sentences a non-technical business owner could understand.
+## What You Asked For
+An online T-shirt shop gets bursts of orders and needs a way to make sure none get dropped during a rush — a "waiting line" where orders sit safely until they can be processed.
 
-## AWS Services Used
-- Service 1: plain-English purpose
-- Service 2: plain-English purpose
+## What I Built For You
+I set up a message queue using AWS SQS. When an order comes in, it goes into the queue and waits. A worker (or system) then pulls orders off the line one at a time and processes them. I tested it by sending sample orders into the queue and receiving them back out — proving orders are held safely until handled.
 
-## Architecture
+## The AWS Services I Used (plain English)
+- **Amazon SQS (Simple Queue Service)**: a waiting line for messages. One part of the system drops orders in; another part picks them up and processes them at its own pace.
+
+## How It Works
 ```mermaid
 flowchart LR
-  User[User or Client] --> A[Service]
-  A --> B[Service]
+  Store[Online Store] -->|order arrives| Queue[SQS Queue: tshirt-order-queue]
+  Queue -->|picked up one at a time| Worker[Order Processor]
 ```
 
-## What I Built
-> TODO: Describe the final product.
-
-## Evidence
-See the `screenshots/` folder.
-
-| Screenshot | What it proves |
-|---|---|
-| screenshots/example.png | TODO |
-
-## Security Notes
-> TODO: Access, IAM, encryption, public/private choices, least privilege.
-
-## Cost Notes
-See [cost-notes.md](cost-notes.md).
-
-## Cleanup
-See [cleanup.md](cleanup.md).
-
-## Exam Mapping
-See [exam-mapping.md](exam-mapping.md).
+## Why This Is The Right Fit For You
+During a sale or a busy day, orders can come in faster than they can be handled. Without a queue, a rush could overwhelm the system and orders could get lost. SQS holds every order in line so nothing is dropped — the shop processes them steadily even if 100 come in at once. This is called
