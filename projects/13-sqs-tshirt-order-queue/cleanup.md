@@ -1,10 +1,10 @@
-# Cleanup — Create an Order Processing Queue with SQS
+# Cleanup — Order Queue (SQS)
 
-## What must be deleted or disabled to stop charges
-- [ ] TODO
+## What must be deleted to stop charges
+- [ ] Delete the SQS queue `tshirt-order-queue` (SQS → select queue → Delete)
 
 ## Cleanup performed on
 Date: TODO
 
 ## Verification
-> TODO: How did you confirm nothing is still billing? (e.g., resource list empty, Cost Explorer the next day)
+After deleting, the queue no longer appears in the SQS console. Usage was within the free tier, so no charges expected.
