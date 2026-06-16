@@ -1,0 +1,5 @@
+﻿Subject: Appointment Reminder
+
+Hi! This is a reminder of your dental appointment tomorrow at 2:00 PM.
+Please call us if you need to reschedule.
+- Bright Smile Dental
