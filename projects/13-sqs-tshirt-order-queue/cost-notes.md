@@ -1,10 +1,8 @@
-# Cost Notes — Create an Order Processing Queue with SQS
+# Cost Notes — Order Queue (SQS)
 
-## Expected Cost
-> TODO: What would this cost per month at small scale?
-
-## Free Tier Assumptions
-> TODO: Which parts are Free Tier eligible and what are the limits?
+## What This Costs You
+Effectively $0. SQS includes a free tier of 1 million requests per month. A test queue uses a tiny fraction of that.
 
 ## Cost Controls
-> TODO: Budgets, alerts, teardown timing, sizing choices.
+- Pay-per-use beyond the free tier.
+- No server running in the background.
