@@ -1,10 +1,12 @@
-# Cost Notes — Create a Customer Database for a Gym
+# Cost Notes — Customer Database (RDS)
 
-## Expected Cost
-> TODO: What would this cost per month at small scale?
+## What This Costs You
+A db.t3.micro single instance is free-tier eligible (750 hours/month for the first 12 months). Outside free tier, RDS bills hourly while the database is running.
 
-## Free Tier Assumptions
-> TODO: Which parts are Free Tier eligible and what are the limits?
+## The Key Point
+Like EC2, RDS charges while running — even when idle. Deleting the database stops all charges. This one was deleted after verification, so it costs nothing now.
 
 ## Cost Controls
-> TODO: Budgets, alerts, teardown timing, sizing choices.
+- Used the Sandbox / single-instance, free-tier-eligible setup (db.t3.micro).
+- Deleted the database after capturing proof.
+- The account budget alert catches anything left running.
