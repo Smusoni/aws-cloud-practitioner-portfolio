@@ -1,10 +1,11 @@
-# Cleanup — Send Appointment Reminders with SNS
+# Cleanup — Appointment Reminders (SNS)
 
-## What must be deleted or disabled to stop charges
-- [ ] TODO
+## What must be deleted to stop charges
+- [ ] Delete the SNS topic `dental-appointment-reminders` (SNS → Topics → select → Delete)
+- [ ] Subscriptions are removed automatically when the topic is deleted
 
 ## Cleanup performed on
 Date: TODO
 
 ## Verification
-> TODO: How did you confirm nothing is still billing? (e.g., resource list empty, Cost Explorer the next day)
+After deleting, the topic no longer appears in SNS. SNS usage was within the free tier, so no charges expected.
