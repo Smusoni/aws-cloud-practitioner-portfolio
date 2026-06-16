@@ -1,10 +1,11 @@
-# Cleanup — Create a Customer Database for a Gym
+# Cleanup — Customer Database (RDS)
 
-## What must be deleted or disabled to stop charges
-- [ ] TODO
+## What must be deleted to stop charges
+- [ ] Delete the RDS instance `gym-member-db` (RDS → Databases → select → Actions → Delete)
+- [ ] Uncheck "Create final snapshot" and "Retain automated backups" when deleting
 
 ## Cleanup performed on
-Date: TODO
+Date: TODO (delete after screenshots are saved)
 
 ## Verification
-> TODO: How did you confirm nothing is still billing? (e.g., resource list empty, Cost Explorer the next day)
+After deleting, the database no longer appears in the RDS console. Confirm in Cost Explorer the next day that RDS charges returned to zero.
