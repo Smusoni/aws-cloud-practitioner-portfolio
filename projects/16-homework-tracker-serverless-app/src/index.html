@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework Tracker</title>
+<style>
+  :root{
+    --bg:#0f1117;
+    --card:#181b24;
+    --line:#262a36;
+    --text:#e7e9ee;
+    --muted:#9aa0ad;
+    --accent:#6c8cff;
+    --accent-dark:#566fd6;
+    --green:#3ecf8e;
+    --amber:#ffb454;
+    --danger:#ff6b6b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    min-height:100vh;
+    padding:2rem 1rem;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+  header{margin-bottom:2rem;text-align:center;}
+  header h1{font-size:1.9rem;font-weight:700;letter-spacing:-.02em;}
+  header p{color:var(--muted);margin-top:.4rem;font-size:.95rem;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.5rem;
+    margin-bottom:1.5rem;
+  }
+  .card h2{font-size:1rem;font-weight:600;margin-bottom:1rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;}
+  @media(max-width:560px){.form-row{grid-template-columns:1fr;}}
+  input,select{
+    width:100%;
+    background:var(--bg);
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:.75rem .9rem;
+    border-radius:9px;
+    font-size:.95rem;
+    outline:none;
+    transition:border-color .2s;
+  }
+  input:focus,select:focus{border-color:var(--accent);}
+  input::placeholder{color:var(--muted);}
+
+  button{
+    cursor:pointer;
+    border:none;
+    border-radius:9px;
+    font-size:.95rem;
+    font-weight:600;
+    transition:background .2s,transform .1s;
+  }
+  button:active{transform:translateY(1px);}
+  .btn-add{
+    background:var(--accent);
+    color:#fff;
+    padding:.8rem 1.4rem;
+    width:100%;
+  }
+  .btn-add:hover{background:var(--accent-dark);}
+
+  .task{
+    display:flex;align-items:center;gap:1rem;
+    padding:1rem;
+    border:1px solid var(--line);
+    border-radius:11px;
+    margin-bottom:.7rem;
+    background:var(--bg);
+  }
+  .task-info{flex:1;min-width:0;}
+  .task-info .subject{font-weight:600;font-size:1rem;}
+  .task-info .assignment{color:var(--muted);font-size:.9rem;margin-top:.15rem;}
+  .badge{
+    font-size:.72rem;font-weight:600;padding:.3rem .7rem;border-radius:50px;white-space:nowrap;
+  }
+  .badge.not{background:rgba(255,107,107,.15);color:var(--danger);}
+  .badge.prog{background:rgba(255,180,84,.15);color:var(--amber);}
+  .badge.done{background:rgba(62,207,142,.15);color:var(--green);}
+  .btn-del{
+    background:transparent;
+    color:var(--muted);
+    font-size:1.3rem;
+    line-height:1;
+    padding:.3rem .5rem;
+    border-radius:7px;
+  }
+  .btn-del:hover{background:rgba(255,107,107,.15);color:var(--danger);}
+
+  .empty{text-align:center;color:var(--muted);padding:2rem 1rem;font-size:.95rem;}
+  .status{text-align:center;font-size:.85rem;color:var(--muted);min-height:1.2rem;margin-top:.5rem;}
+  .status.err{color:var(--danger);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📚 Homework Tracker</h1>
+    <p>Add assignments, track progress, check them off.</p>
+  </header>
+
+  <div class="card">
+    <h2>Add a task</h2>
+    <div class="form-row">
+      <input id="subject" type="text" placeholder="Subject (e.g. Math)">
+      <select id="status">
+        <option value="Not started">Not started</option>
+        <option value="In progress">In progress</option>
+        <option value="Done">Done</option>
+      </select>
+    </div>
+    <div class="form-row" style="grid-template-columns:1fr;">
+      <input id="assignment" type="text" placeholder="Assignment (e.g. Chapter 5 problems)">
+    </div>
+    <button class="btn-add" onclick="addTask()">Add Task</button>
+    <div id="addStatus" class="status"></div>
+  </div>
+
+  <div class="card">
+    <h2>Your tasks</h2>
+    <div id="taskList"><div class="empty">Loading…</div></div>
+  </div>
+</div>
+
+<script>
+  const API = "https://0pns7famxd.execute-api.us-east-2.amazonaws.com";
+
+  async function loadTasks(){
+    const list = document.getElementById('taskList');
+    try{
+      const res = await fetch(API + "/tasks");
+      const data = await res.json();
+      const tasks = data.tasks || [];
+      if(tasks.length === 0){
+        list.innerHTML = '<div class="empty">No tasks yet. Add one above!</div>';
+        return;
+      }
+      list.innerHTML = tasks.map(t => {
+        const cls = t.status === 'Done' ? 'done' : (t.status === 'In progress' ? 'prog' : 'not');
+        return `
+          <div class="task">
+            <div class="task-info">
+              <div class="subject">${escapeHtml(t.subject || 'Untitled')}</div>
+              <div class="assignment">${escapeHtml(t.assignment || '')}</div>
+            </div>
+            <span class="badge ${cls}">${escapeHtml(t.status || 'Not started')}</span>
+            <button class="btn-del" onclick="deleteTask('${t.taskId}')" title="Delete">&times;</button>
+          </div>`;
+      }).join('');
+    }catch(e){
+      list.innerHTML = '<div class="empty">Could not load tasks. Check the API connection.</div>';
+    }
+  }
+
+  async function addTask(){
+    const subject = document.getElementById('subject').value.trim();
+    const assignment = document.getElementById('assignment').value.trim();
+    const status = document.getElementById('status').value;
+    const msg = document.getElementById('addStatus');
+
+    if(!subject){ msg.textContent = "Please enter a subject."; msg.className="status err"; return; }
+
+    msg.textContent = "Adding…"; msg.className="status";
+    try{
+      await fetch(API + "/tasks", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({subject, assignment, status})
+      });
+      document.getElementById('subject').value = '';
+      document.getElementById('assignment').value = '';
+      document.getElementById('status').value = 'Not started';
+      msg.textContent = "Task added!";
+      loadTasks();
+    }catch(e){
+      msg.textContent = "Could not add task."; msg.className="status err";
+    }
+  }
+
+  async function deleteTask(taskId){
+    try{
+      await fetch(API + "/tasks", {
+        method: "DELETE",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({taskId})
+      });
+      loadTasks();
+    }catch(e){
+      alert("Could not delete task.");
+    }
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  loadTasks();
+</script>
+</body>
+</html>

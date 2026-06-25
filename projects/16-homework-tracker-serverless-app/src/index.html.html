@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colón Coffee — Roasted with Intention</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#2b1a12;
+    --bean:#3d2418;
+    --crema:#c9a26b;
+    --foam:#f4ece1;
+    --cream:#efe3d2;
+    --burnt:#8a4b2a;
+    --ink:#1a0f0a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--foam);
+    color:var(--espresso);
+    font-family:'Outfit',sans-serif;
+    overflow-x:hidden;
+  }
+
+  /* grain overlay */
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;z-index:9999;
+    opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.5rem 2.5rem;
+    mix-blend-mode:difference;
+  }
+  nav .brand{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:1.4rem;letter-spacing:-.02em;color:#fff;
+  }
+  nav .links{display:flex;gap:2rem;}
+  nav .links a{
+    color:#fff;text-decoration:none;font-size:.85rem;
+    text-transform:uppercase;letter-spacing:.15em;font-weight:500;
+    opacity:.8;transition:opacity .3s;
+  }
+  nav .links a:hover{opacity:1;}
+  @media(max-width:640px){nav .links{display:none;}}
+
+  /* HERO */
+  header{
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 70% 20%, rgba(138,75,42,.35), transparent 60%),
+      linear-gradient(160deg, var(--ink) 0%, var(--bean) 55%, var(--burnt) 130%);
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 2.5rem;position:relative;
+  }
+  .hero-tag{
+    color:var(--crema);text-transform:uppercase;
+    letter-spacing:.35em;font-size:.75rem;font-weight:500;
+    margin-bottom:1.5rem;
+    opacity:0;animation:rise .9s .2s forwards;
+  }
+  .hero-title{
+    font-family:'Fraunces',serif;font-weight:900;
+    color:var(--foam);
+    font-size:clamp(3.5rem,12vw,9rem);
+    line-height:.92;letter-spacing:-.03em;
+    max-width:14ch;
+  }
+  .hero-title span{display:block;overflow:hidden;}
+  .hero-title span i{
+    display:block;font-style:normal;
+    transform:translateY(110%);
+    animation:rise .9s forwards;
+  }
+  .hero-title span:nth-child(1) i{animation-delay:.35s;}
+  .hero-title span:nth-child(2) i{animation-delay:.5s;color:var(--crema);font-style:italic;font-weight:400;}
+  .hero-title span:nth-child(3) i{animation-delay:.65s;}
+  .hero-sub{
+    margin-top:2.5rem;max-width:38ch;
+    color:var(--cream);font-size:1.05rem;line-height:1.6;font-weight:300;
+    opacity:0;animation:rise .9s .9s forwards;
+  }
+  .hero-cta{
+    margin-top:2.5rem;display:inline-flex;align-items:center;gap:.8rem;
+    background:var(--crema);color:var(--ink);
+    padding:1rem 2rem;border-radius:50px;text-decoration:none;
+    font-weight:600;font-size:.95rem;width:fit-content;
+    opacity:0;animation:rise .9s 1.1s forwards;
+    transition:transform .3s, background .3s;
+  }
+  .hero-cta:hover{transform:translateY(-3px);background:var(--foam);}
+  .scroll-hint{
+    position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+    color:var(--crema);font-size:.7rem;letter-spacing:.3em;
+    text-transform:uppercase;opacity:0;animation:fade 1s 1.5s forwards;
+  }
+  .scroll-hint::after{
+    content:"";display:block;width:1px;height:40px;
+    background:var(--crema);margin:.8rem auto 0;
+    animation:pulse 2s infinite;
+  }
+
+  @keyframes rise{to{transform:translateY(0);opacity:1;}}
+  @keyframes fade{to{opacity:.7;}}
+  @keyframes pulse{0%,100%{transform:scaleY(1);opacity:1;}50%{transform:scaleY(.4);opacity:.3;}}
+
+  /* MARQUEE */
+  .marquee{
+    background:var(--espresso);color:var(--crema);
+    padding:1.1rem 0;overflow:hidden;white-space:nowrap;
+    border-top:1px solid rgba(201,162,107,.2);
+    border-bottom:1px solid rgba(201,162,107,.2);
+  }
+  .marquee div{display:inline-block;animation:scroll 22s linear infinite;}
+  .marquee span{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:1.3rem;margin:0 2rem;
+  }
+  .marquee span::after{content:"✦";margin-left:4rem;font-style:normal;color:var(--burnt);}
+  @keyframes scroll{to{transform:translateX(-50%);}}
+
+  /* SECTIONS */
+  section{padding:7rem 2.5rem;max-width:1200px;margin:0 auto;}
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:.3em;font-size:.75rem;
+    color:var(--burnt);font-weight:600;margin-bottom:1rem;
+  }
+  .sec-title{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(2rem,5vw,3.5rem);line-height:1.05;
+    letter-spacing:-.02em;max-width:18ch;
+  }
+
+  /* STORY */
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+  .story-text p{
+    margin-top:1.5rem;line-height:1.8;color:var(--bean);
+    font-size:1.05rem;font-weight:300;
+  }
+  .story-visual{
+    aspect-ratio:4/5;border-radius:8px;
+    background:
+      radial-gradient(circle at 50% 35%, var(--burnt), transparent 55%),
+      linear-gradient(150deg,var(--bean),var(--ink));
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .story-visual .cup{
+    font-size:8rem;filter:drop-shadow(0 20px 40px rgba(0,0,0,.4));
+  }
+  .story-visual::before{
+    content:"EST. 2026";position:absolute;top:1.5rem;left:1.5rem;
+    color:var(--crema);font-size:.7rem;letter-spacing:.3em;opacity:.6;
+  }
+  @media(max-width:780px){.story{grid-template-columns:1fr;gap:3rem;}}
+
+  /* MENU */
+  .menu-sec{background:var(--cream);max-width:100%;}
+  .menu-inner{max-width:1200px;margin:0 auto;}
+  .menu-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1px;background:rgba(61,36,24,.15);
+    margin-top:3rem;border:1px solid rgba(61,36,24,.15);
+  }
+  .menu-item{
+    background:var(--cream);padding:2.5rem 2rem;
+    transition:background .4s;cursor:default;
+  }
+  .menu-item:hover{background:var(--foam);}
+  .menu-item .name{
+    font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;
+    display:flex;justify-content:space-between;align-items:baseline;
+  }
+  .menu-item .price{color:var(--burnt);font-size:1.1rem;font-family:'Outfit';}
+  .menu-item .desc{
+    margin-top:.8rem;color:var(--bean);line-height:1.6;
+    font-size:.95rem;font-weight:300;
+  }
+
+  /* VALUES */
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:3.5rem;}
+  .value .num{
+    font-family:'Fraunces',serif;font-size:2.5rem;color:var(--crema);
+    font-style:italic;
+  }
+  .value h3{margin:.6rem 0;font-size:1.25rem;font-weight:600;}
+  .value p{color:var(--bean);line-height:1.7;font-size:.95rem;font-weight:300;}
+  @media(max-width:780px){.values{grid-template-columns:1fr;gap:2rem;}}
+
+  /* CTA */
+  .closer{
+    background:linear-gradient(160deg,var(--bean),var(--ink));
+    color:var(--foam);text-align:center;max-width:100%;
+  }
+  .closer .sec-title{margin:0 auto;color:var(--foam);}
+  .closer p{
+    margin:1.5rem auto 2.5rem;max-width:42ch;color:var(--cream);
+    line-height:1.7;font-weight:300;
+  }
+  .closer a{
+    display:inline-flex;background:var(--crema);color:var(--ink);
+    padding:1rem 2.2rem;border-radius:50px;text-decoration:none;
+    font-weight:600;transition:transform .3s, background .3s;
+  }
+  .closer a:hover{transform:translateY(-3px);background:var(--foam);}
+
+  /* FOOTER */
+  footer{
+    background:var(--ink);color:var(--cream);
+    padding:3rem 2.5rem;text-align:center;
+  }
+  footer .brand{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem;}
+  footer .small{margin-top:.8rem;font-size:.8rem;opacity:.5;letter-spacing:.05em;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Colón Coffee</div>
+  <div class="links">
+    <a href="#story">Story</a>
+    <a href="#menu">Menu</a>
+    <a href="#values">Craft</a>
+    <a href="#visit">Visit</a>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-tag">Small-batch · Single-origin · Columbus, OH</div>
+  <h1 class="hero-title">
+    <span><i>Roasted</i></span>
+    <span><i>with</i></span>
+    <span><i>intention.</i></span>
+  </h1>
+  <p class="hero-sub">A coffee brand built on slow mornings and good beans. Sourced carefully, roasted in small batches, and poured for people who notice the difference.</p>
+  <a href="#menu" class="hero-cta">See the Menu →</a>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<div class="marquee">
+  <div>
+    <span>Freshly Roasted</span><span>Ethically Sourced</span><span>Brewed Daily</span><span>Freshly Roasted</span><span>Ethically Sourced</span><span>Brewed Daily</span>
+  </div>
+</div>
+
+<section id="story">
+  <div class="story">
+    <div class="story-text">
+      <div class="eyebrow">Our Story</div>
+      <h2 class="sec-title">Good coffee shouldn't be complicated.</h2>
+      <p>Colón Coffee started with a simple idea: source beans we'd be proud to serve, roast them in small batches, and keep everything honest from farm to cup.</p>
+      <p>No gimmicks, no shortcuts — just carefully chosen coffee, roasted fresh, and a space built around the ritual of a good morning.</p>
+    </div>
+    <div class="story-visual"><div class="cup">☕</div></div>
+  </div>
+</section>
+
+<section id="menu" class="menu-sec">
+  <div class="menu-inner">
+    <div class="eyebrow">The Menu</div>
+    <h2 class="sec-title">A short list, done right.</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="name">Espresso <span class="price">$3.5</span></div>
+        <div class="desc">A clean, balanced double shot pulled from our house blend. Rich crema, no bitterness.</div>
+      </div>
+      <div class="menu-item">
+        <div class="name">Pour Over <span class="price">$5</span></div>
+        <div class="desc">Single-origin, hand-poured to order. Bright, nuanced, and made for slowing down.</div>
+      </div>
+      <div class="menu-item">
+        <div class="name">Cortado <span class="price">$4.5</span></div>
+        <div class="desc">Equal parts espresso and steamed milk. Smooth, warm, perfectly proportioned.</div>
+      </div>
+      <div class="menu-item">
+        <div class="name">Cold Brew <span class="price">$4.5</span></div>
+        <div class="desc">Steeped 18 hours for a naturally sweet, low-acid finish. Served over ice.</div>
+      </div>
+      <div class="menu-item">
+        <div class="name">Whole Beans <span class="price">$16</span></div>
+        <div class="desc">Take the roast home. 12oz bags of our latest small-batch single origin.</div>
+      </div>
+      <div class="menu-item">
+        <div class="name">Drip of the Day <span class="price">$3</span></div>
+        <div class="desc">A rotating house selection. Ask the counter what's brewing today.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="values">
+  <div class="eyebrow">The Craft</div>
+  <h2 class="sec-title">Three things we never cut corners on.</h2>
+  <div class="values">
+    <div class="value">
+      <div class="num">01</div>
+      <h3>Sourcing</h3>
+      <p>We buy from growers who are paid fairly and farm responsibly. Better beans start with better relationships.</p>
+    </div>
+    <div class="value">
+      <div class="num">02</div>
+      <h3>Roasting</h3>
+      <p>Small batches, roasted to bring out each origin's character — never burnt to hide a cheap bean.</p>
+    </div>
+    <div class="value">
+      <div class="num">03</div>
+      <h3>Freshness</h3>
+      <p>Roasted weekly, ground to order. Coffee is best within days of the roast, and we keep it that way.</p>
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="closer">
+  <div class="eyebrow" style="color:var(--crema)">Come Say Hi</div>
+  <h2 class="sec-title">Your next good morning starts here.</h2>
+  <p>Find us in Columbus, Ohio — open early, every day. Pull up a chair, take it slow, and let us pour you something worth the wait.</p>
+  <a href="#">Get Directions</a>
+</section>
+
+<footer>
+  <div class="brand">Colón Coffee</div>
+  <div class="small">Columbus, OH · Open daily 6am–4pm · © 2026 Colón Coffee</div>
+</footer>
+
+</body>
+</html>
