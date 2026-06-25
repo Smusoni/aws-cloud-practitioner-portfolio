@@ -1,39 +1,20 @@
-# Create a Private Document Storage Bucket for a Law Office
+# Private Document Storage Bucket for a Law Office
 
-## Business Scenario
-Who asked for this and what problem are we solving?
+Hi Terence — here is the secure cloud storage solution I built for the law office scenario to ensure sensitive client data remains completely private.
 
-> TODO: Write 2-4 sentences a non-technical business owner could understand.
+## What You Asked For
+A law office needs a private, highly secure digital filing cabinet in the cloud to store legal contracts and sensitive client files. Absolutely nothing should be viewable by the public, and all data must be encrypted automatically.
 
-## AWS Services Used
-- Service 1: plain-English purpose
-- Service 2: plain-English purpose
+## What I Built For You
+I created a private, locked-down storage repository using Amazon S3. I enabled mandatory server-side encryption so that files are scrambled the second they hit the cloud. Finally, I enforced "Block Public Access" guardrails and attached a strict access policy ensuring only authorized legal staff can view the documents.
 
-## Architecture
+## The AWS Services I Used (plain English)
+- **Amazon S3 (Simple Storage Service)**: The cloud storage bucket where files are kept. It is highly durable and designed to scale infinitely.
+- **AWS KMS (Key Management Service) / S3 Managed Encryption**: The system that automatically handles the cryptographic keys to encrypt the legal files at rest.
+- **AWS IAM (Identity and Access Management)**: The security gatekeeper used to define exactly which employees have permission to read the files, while completely blocking the public.
+
+## How It Works
 ```mermaid
 flowchart LR
-  User[User or Client] --> A[Service]
-  A --> B[Service]
-```
-
-## What I Built
-> TODO: Describe the final product.
-
-## Evidence
-See the `screenshots/` folder.
-
-| Screenshot | What it proves |
-|---|---|
-| screenshots/example.png | TODO |
-
-## Security Notes
-> TODO: Access, IAM, encryption, public/private choices, least privilege.
-
-## Cost Notes
-See [cost-notes.md](cost-notes.md).
-
-## Cleanup
-See [cleanup.md](cleanup.md).
-
-## Exam Mapping
-See [exam-mapping.md](exam-mapping.md).
+    Staff[Authorized Legal Staff] -->|Secure Access Granted| S3[Encrypted S3 Bucket]
+    Public[Public Internet] -->|BLOCKED by Bucket Policy| S3
