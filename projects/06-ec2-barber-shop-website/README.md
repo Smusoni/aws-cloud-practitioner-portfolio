@@ -1,39 +1,20 @@
 # Host a Small Business Website on EC2
 
-## Business Scenario
-Who asked for this and what problem are we solving?
+Hi Terence — here is the live, cloud-hosted landing page I built for your barber shop business scenario.
 
-> TODO: Write 2-4 sentences a non-technical business owner could understand.
+## What You Asked For
+A local barber shop needs a lightweight, reliable, and cost-effective web server to host a simple public-facing landing page so customers can find business hours and services online.
 
-## AWS Services Used
-- Service 1: plain-English purpose
-- Service 2: plain-English purpose
+## What I Built For You
+I provisioned a virtual cloud server using Amazon EC2 running a secure Amazon Linux machine. To make the setup completely efficient, I wrote an automation script that instantly updates the system, installs the standard Apache web server, and deploys your custom landing page the exact second the server boots up. Finally, I configured a secure network firewall to allow incoming public web traffic while keeping administrative access locked down.
 
-## Architecture
+## The AWS Services I Used (plain English)
+- **Amazon EC2 (Elastic Compute Cloud)**: The virtual server machine running in the AWS cloud that keeps your website running 24/7.
+- **Amazon Machine Image (AMI)**: The clean pre-configured Linux operating system template used to launch the server.
+- **Security Groups**: The virtual network firewall that acts as a gatekeeper, explicitly opening Port 80 to let customers view the website while blocking unauthorized access.
+
+## How It Works
 ```mermaid
 flowchart LR
-  User[User or Client] --> A[Service]
-  A --> B[Service]
-```
-
-## What I Built
-> TODO: Describe the final product.
-
-## Evidence
-See the `screenshots/` folder.
-
-| Screenshot | What it proves |
-|---|---|
-| screenshots/example.png | TODO |
-
-## Security Notes
-> TODO: Access, IAM, encryption, public/private choices, least privilege.
-
-## Cost Notes
-See [cost-notes.md](cost-notes.md).
-
-## Cleanup
-See [cleanup.md](cleanup.md).
-
-## Exam Mapping
-See [exam-mapping.md](exam-mapping.md).
+    Customer[Everyday Customer] -->|HTTP Port 80 Allowed| SG[Security Group Firewall]
+    SG -->|Traffic Passes| EC2[Apache Web Server on EC2]
