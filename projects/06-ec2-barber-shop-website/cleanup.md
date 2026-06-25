@@ -1,10 +1,10 @@
-# Cleanup — Host a Small Business Website on EC2
+# Cleanup & Takedown Guide - Project 6
 
-## What must be deleted or disabled to stop charges
-- [ ] TODO
+To completely decommission this project and ensure your AWS account does not incur ongoing compute or storage footprints:
 
-## Cleanup performed on
-Date: TODO
-
-## Verification
-> TODO: How did you confirm nothing is still billing? (e.g., resource list empty, Cost Explorer the next day)
+1. **Terminate the EC2 Instance:**
+   * Navigate to the **EC2 Instances** dashboard in the AWS Console.
+   * Select the `terence-barber-shop-website` instance.
+   * Click the **Instance state** dropdown menu and select **Terminate instance**.
+2. **Confirm Destruction:**
+   * Click **Terminate** when prompted. This action completely shuts down the virtual machine and automatically deletes the attached root EBS storage volume, ensuring zero residual costs.
